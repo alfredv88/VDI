@@ -1156,7 +1156,7 @@ body {
 
 /* 4.3 Sección Equipo de Trabajo (en index.html) */
 .team-section {
-    padding: 20px 0;
+    padding: 60px 0 150px; /* Aumenta el padding inferior para mayor separación */
     background-color: #f9f9f9; /* Color de fondo similar a la sección de especialidades */
 }
 
