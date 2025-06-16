@@ -255,7 +255,7 @@ body {
     padding: 20px;
 }
 .hero-title {
-    font-size: 4.2em;
+    font-size: 6.2em;
     font-weight: bold;
     margin-top: 0;
     margin-bottom: 0.4em;
@@ -342,7 +342,7 @@ body {
 
 /* 4.3 Sección Áreas de Especialización (Preview en index.html) */
 .specialization-section { 
-    padding: 20px 0;
+    padding: 80px 0;
     background-color: #f9f9f9;
 }
 .specialization-section .section-title { 
