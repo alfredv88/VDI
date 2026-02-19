@@ -377,10 +377,9 @@ h6 {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    clip-path: inset(0 0 0 100%);
+    z-index: 1;
     transform: scale(1.12);
     transition:
-        clip-path 1.4s cubic-bezier(0.77, 0, 0.175, 1),
         transform 2.2s cubic-bezier(0.19, 1, 0.22, 1),
         opacity 0.8s ease;
 }
@@ -407,7 +406,6 @@ h6 {
 
 .hero-slide.active-slide {
     opacity: 1;
-    clip-path: inset(0 0 0 0);
     transform: scale(1);
     z-index: 2;
 }
@@ -459,11 +457,11 @@ h6 {
 }
 
 .hero-title-main {
-    font-size: 7.5em;
-    /* Impact bigger */
+    font-size: 5.2em;
+    /* Adjusted for longer name 'VENEZOLANA DE' */
     font-weight: var(--font-weight-black);
-    letter-spacing: -4px;
-    /* Tight technical look */
+    letter-spacing: -2px;
+    /* Slightly wider for readability */
     margin: 0 0 16px;
     color: #ffffff;
     line-height: 0.95;
