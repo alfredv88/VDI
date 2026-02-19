@@ -330,6 +330,12 @@ h6 {
 }
 
 /* Specific context overrides for dark backgrounds - Forced for contrast */
+.about-section .section-title,
+#acerca-nosotros .section-title {
+    color: #ffffff !important;
+}
+
+/* Technical Accent Bar for dark backgrounds */
 .about-section .section-title::after,
 #acerca-nosotros .section-title::after,
 .video-content h2::after,
@@ -340,7 +346,7 @@ h6 {
 .about-section .section-overline,
 #acerca-nosotros .section-overline,
 .video-content .section-overline {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: #ffffff !important;
 }
 
 .about-section .text-accent,
@@ -584,7 +590,7 @@ h6 {
     text-align: center;
     font-size: 1.35em;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     max-width: 900px;
     margin: 0 auto 60px auto;
     line-height: 1.8;
