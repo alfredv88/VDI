@@ -1,0 +1,19 @@
+# AI & Tools
+temp_skills/
+.gemini/
+.agent/
+.vscode/
+
+# Local backups / Subdomains (Ignoring to keep current project clean)
+api.vdi.com.ve/
+digitel.vdi.com.ve/
+vdi.com.ve/
+
+# System Files
+Thumbs.db
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

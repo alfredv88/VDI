@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu mensaje! | VDI</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background: #fafbfc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .gracias-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(30, 34, 44, 0.10);
+            padding: 48px 32px 36px 32px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .gracias-icon {
+            margin-bottom: 18px;
+        }
+
+        .gracias-icon svg {
+            width: 64px;
+            height: 64px;
+            fill: #4caf50;
+        }
+
+        .gracias-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2em;
+            color: #232a34;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .gracias-msg {
+            color: #444b5a;
+            font-size: 1.1em;
+            margin-bottom: 28px;
+        }
+
+        .gracias-btn {
+            display: inline-block;
+            background: #232a34;
+            color: #fff;
+            font-size: 1.1em;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 30px;
+            border: none;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(30, 34, 44, 0.08);
+            transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+            letter-spacing: 0.5px;
+            margin-top: 18px;
+        }
+
+        .gracias-btn:hover {
+            background: #444b5a;
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(30, 34, 44, 0.13);
+            transform: translateY(-1px) scale(1.03);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gracias-container">
+        <div class="gracias-icon">
+            <svg viewBox="0 0 64 64">
+                <circle cx="32" cy="32" r="32" fill="#eafaf1" />
+                <path d="M20 34l8 8 16-16" stroke="#4caf50" stroke-width="4" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="gracias-title">¡Gracias por tu mensaje!</div>
+        <div class="gracias-msg">Hemos recibido tu consulta y te responderemos lo antes posible.<br>Te invitamos a
+            seguir explorando nuestro sitio web.</div>
+        <a href="index.html" class="gracias-btn">Volver al inicio</a>
+    </div>
+</body>
+
+</html>

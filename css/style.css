@@ -1,0 +1,2587 @@
+/* ==========================================================================
+   1. Variables Globales (:root)
+   ========================================================================== */
+:root {
+    /* 1. Brand & Accent Colors */
+    --primary-blue: #2c3e50;
+    /* Deep Navy */
+    --primary-light: #34495e;
+    /* Tech Blue */
+    --primary-dark: #1e293b;
+    /* Dark Navy */
+
+    /* 2. Neutral Scale (Slate/Grays) */
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+
+    /* 3. Logical Semantic Variables */
+    --bg-light: var(--slate-50);
+    --text-main: var(--slate-900);
+    --text-muted: var(--slate-600);
+    --white: #ffffff;
+
+    /* 4. Typography Tokens */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+    --letter-spacing-tight: -0.04em;
+    --letter-spacing-heading: -0.02em;
+    --letter-spacing-overline: 0.2em;
+
+    /* 4.1 Weights & Accents */
+    --font-weight-thin: 300;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+    --accent-color: #ffffff;
+    /* White for Hero accents */
+    --accent-dark: var(--slate-500);
+    /* Steel Gray for section accents */
+
+    /* 5. Layout & UI Tokens */
+    --initial-header-padding: 8px;
+    --scrolled-header-padding: 4px;
+    --initial-logo-height: 80px;
+    --scrolled-logo-height: 45px;
+    --header-scroll-threshold: 60;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-blur: blur(12px);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   2. Estilos Generales del Body y Contenedor Principal
+   ========================================================================== */
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-main);
+    overflow-x: hidden;
+    background: var(--bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    letter-spacing: var(--letter-spacing-heading);
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. Componentes Compartidos (Header, Footer, Navegación)
+   ========================================================================== */
+/* 3.1 Cabecera (Header) */
+.site-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    z-index: 1000;
+    transition: var(--transition-base);
+    border-radius: 12px;
+}
+
+.site-header.initial-state {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: var(--initial-header-padding) 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.site-header.scrolled-state {
+    top: 10px;
+    background-color: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    padding: var(--scrolled-header-padding) 0;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+}
+
+.site-header.initial-state .main-navigation a {
+    color: #ffffff;
+    border: none;
+}
+
+.site-header.initial-state .main-navigation a:hover,
+.site-header.initial-state .main-navigation a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+.site-header.scrolled-state .main-navigation a {
+    color: var(--text-main);
+    border: none;
+}
+
+.site-header.scrolled-state .main-navigation a:hover,
+.site-header.scrolled-state .main-navigation a.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    /* Using global white variable */
+    box-shadow: 0 4px 12px 0 rgba(44, 62, 80, 0.3);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transition: var(--transition-base);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.site-header.initial-state .logo img {
+    max-height: var(--initial-logo-height);
+}
+
+.site-header.scrolled-state .logo img {
+    max-height: var(--scrolled-logo-height);
+}
+
+/* 3.1.1 Navegación Principal y Menú Móvil */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px 10px;
+    line-height: 1;
+}
+
+.menu-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.main-navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation li {
+    margin-left: 25px;
+}
+
+.main-navigation a {
+    text-decoration: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    transition: var(--transition-base);
+    white-space: nowrap;
+    /* Prevent wrapping in tight spaces */
+}
+
+/* 3.2 Pie de Página (Footer) */
+.site-footer {
+    background: radial-gradient(circle at top right, #1E293B, #0F172A);
+    color: #F8FAFC;
+    text-align: center;
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.site-footer p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.site-footer .footer-brand {
+    font-size: 0.8em;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.site-footer .footer-brand a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.site-footer .footer-brand a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    color: #ecf0f1;
+    margin: 0 8px;
+    text-decoration: none;
+    font-size: 1.5em;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.social-icons svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* ==========================================================================
+4. Estilos Específicos de Secciones de INDEX.HTML
+   ========================================================================== */
+
+/* 4.0 Título de Sección General (usado en index.html y otras páginas si es necesario) */
+.section-title {
+    display: table;
+    margin: 0 auto 60px auto;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 3.8em;
+    color: var(--primary-blue);
+    font-weight: var(--font-weight-black);
+    letter-spacing: var(--letter-spacing-tight);
+    padding-top: 50px;
+    position: relative;
+    line-height: 1.1;
+}
+
+.section-overline {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-overline);
+    margin-bottom: 12px;
+}
+
+.text-accent {
+    color: var(--primary-light);
+    /* Integrated blue from your palette */
+    font-weight: var(--font-weight-black);
+}
+
+.hero-section .text-accent {
+    color: var(--white);
+    /* White accent for dark hero backgrounds */
+}
+
+/* Base long line */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 6px;
+    background: var(--primary-blue);
+    margin: 15px 0 0 0;
+    /* Left aligned relative to the centered text */
+    border-radius: 10px;
+}
+
+/* Specific context overrides for dark backgrounds - Forced for contrast */
+.about-section .section-title::after,
+#acerca-nosotros .section-title::after,
+.video-content h2::after,
+.client-carousel-section .cp-header::after {
+    background: #ffffff !important;
+}
+
+.about-section .section-overline,
+#acerca-nosotros .section-overline,
+.video-content .section-overline {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.about-section .text-accent,
+#acerca-nosotros .text-accent,
+.video-content .text-accent {
+    color: #ffffff !important;
+}
+
+/* Technical Accent Bar */
+
+/* 4.1 Sección Hero (index.html) */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Full viewport */
+    min-height: 560px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    /* Anchor content to bottom */
+    background: #111;
+}
+
+.hero-slider-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    clip-path: inset(0 0 0 100%);
+    transform: scale(1.12);
+    transition:
+        clip-path 1.4s cubic-bezier(0.77, 0, 0.175, 1),
+        transform 2.2s cubic-bezier(0.19, 1, 0.22, 1),
+        opacity 0.8s ease;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    z-index: -1;
+}
+
+/* Ensure the scale transition applies to the video when the slide is active */
+.hero-slide .hero-video {
+    transition: transform 2.2s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: scale(1.12);
+}
+
+.hero-slide.active-slide .hero-video {
+    transform: scale(1);
+}
+
+.hero-slide.active-slide {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+    z-index: 2;
+}
+
+/* Dark gradient at bottom for text readability */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(to top,
+            rgba(10, 14, 22, 0.82) 0%,
+            rgba(10, 14, 22, 0.35) 45%,
+            transparent 100%);
+    pointer-events: none;
+}
+
+/* Bottom-left content bar */
+.hero-bottom-bar {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 60px 48px;
+    box-sizing: border-box;
+}
+
+.hero-text-block {
+    max-width: 750px;
+    padding-left: 20px;
+    border-left: 3px solid rgba(255, 255, 255, 0.85);
+    /* Subtle shadow behind the accent for depth */
+    position: relative;
+}
+
+/* Soft glow behind the entire text zone */
+.hero-text-block::before {
+    content: '';
+    position: absolute;
+    inset: -16px -20px -16px -24px;
+    background: linear-gradient(to right,
+            rgba(10, 14, 22, 0.45) 0%,
+            transparent 100%);
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-title-main {
+    font-size: 7.5em;
+    /* Impact bigger */
+    font-weight: var(--font-weight-black);
+    letter-spacing: -4px;
+    /* Tight technical look */
+    margin: 0 0 16px;
+    color: #ffffff;
+    line-height: 0.95;
+    font-family: var(--font-heading);
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: opacity 0.4s ease;
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    font-weight: var(--font-weight-thin);
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.4s ease;
+}
+
+
+.hero-btn {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: #fff;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 6px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(44, 62, 80, 0.4);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    letter-spacing: 0.5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(44, 62, 80, 0.5);
+}
+
+.hero-dots-wrapper {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4px;
+}
+
+.hero-section .slider-dots {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    /* Vertical dots on right side */
+}
+
+.hero-section .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.hero-section .dot.active-dot {
+    background: #ffffff;
+    border-color: #fff;
+    transform: scale(1.3);
+}
+
+@media (max-width: 700px) {
+    .hero-section {
+        min-height: 65vh;
+        height: 65vh;
+    }
+
+    .hero-bottom-bar {
+        padding: 0 24px 32px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .hero-title-main {
+        font-size: 2em;
+    }
+
+    .hero-dots-wrapper {
+        align-self: flex-end;
+    }
+
+    .hero-section .slider-dots {
+        flex-direction: row;
+    }
+}
+
+
+/* 4.2 Sección Acerca de Nosotros (en index.html) */
+.about-section {
+    padding: 120px 0;
+    background: url('../images/fondo.webp') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dark overlay to ensure text readability */
+.about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.75) 100%);
+    z-index: 0;
+}
+
+.about-intro-text {
+    text-align: center;
+    font-size: 1.35em;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+.about-subsection {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 80px;
+    gap: 0 !important;
+    /* Joined together 'imantadas' */
+    position: relative;
+    z-index: 1;
+    /* Create a unified shadow for the whole block */
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.about-subsection:last-child {
+    margin-bottom: 0;
+}
+
+.about-subsection.vision-subsection {
+    flex-direction: row-reverse;
+}
+
+.about-image {
+    flex: 1;
+    max-width: none;
+    /* Allow filling space */
+    position: relative;
+    display: flex;
+    /* Ensure img fills container */
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Default (Mision): Image on Left */
+    border-radius: 12px 0 0 12px;
+    transition: transform 0.4s ease;
+}
+
+/* Fix rounded corners for Vision (Image on Right due to row-reverse) */
+.vision-subsection .about-image img {
+    border-radius: 0 12px 12px 0;
+}
+
+.about-image:hover img {
+    transform: scale(1.02);
+    /* Subtle zoom instead of lift to keep seam */
+    z-index: 2;
+    /* Bring above text on hover */
+}
+
+.about-subsection-text {
+    flex: 1;
+    max-width: none;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    /* Default (Mision): Text on Right */
+    border-radius: 0 12px 12px 0;
+    /* Remove individual shadow, using container filter instead */
+    box-shadow: none;
+    border: none;
+    transition: background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Fix rounded corners for Vision (Text on Left due to row-reverse) */
+.vision-subsection .about-subsection-text {
+    border-radius: 12px 0 0 12px;
+}
+
+.about-subsection-text:hover {
+    background: #ffffff;
+    z-index: 2;
+}
+
+.about-subsection-text h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-top: 0;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+/* Technical Accent Style */
+.about-subsection-text h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 6px;
+    background: var(--primary-blue);
+    margin: 15px 0 0 0;
+    border-radius: 10px;
+}
+
+.about-subsection-text p {
+    font-size: 1.1em;
+    color: #334155;
+    /* Darker text for readability on white card */
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .about-subsection {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .about-subsection.vision-subsection {
+        flex-direction: column;
+    }
+
+    .about-image,
+    .about-subsection-text {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .about-subsection-text h3::after {
+        margin: 8px auto 0;
+    }
+}
+
+/* 4.3 Sección Áreas de Especialización */
+.specialization-section {
+    padding: 100px 0;
+    background-color: #ffffff;
+}
+
+.specialization-section .section-title {
+    padding-top: 0;
+    margin-bottom: 60px;
+}
+
+.specialization-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 0;
+    /* Remove padding to let image fill header */
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    /* Softer shadow */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    /* Ensure content stays within rounded corners */
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.service-card-image-container {
+    width: 100%;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+    /* Remove distinct border radius since parent has it */
+    margin: 0;
+}
+
+.service-card-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-card-image-container img {
+    transform: scale(1.08);
+}
+
+/* New Tag Style */
+.card-tag {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: var(--primary-blue);
+    /* Corporate Blue */
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 0 12px 0 0;
+    /* Stylized corner */
+    z-index: 2;
+}
+
+/* Card Body Wrapper */
+.service-card-body {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-date {
+    font-size: 0.8em;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 25px;
+    /* Increased for accent space */
+    line-height: 1.3;
+    position: relative;
+    display: inline-block;
+}
+
+.service-card h3::after {
+    content: '';
+    display: block;
+    width: 45px;
+    height: 5px;
+    background: var(--primary-blue);
+    margin: 10px 0 0 0;
+    border-radius: 10px;
+}
+
+.service-card .description {
+    font-size: 0.95em;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.service-card .description ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.service-card .description li {
+    margin-bottom: 8px;
+}
+
+/* Button Style - Restored Solid Look */
+.service-card .btn-mas-info {
+    background: linear-gradient(90deg, #2c3e50 0%, #34495e 100%);
+    color: #fff;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(44, 62, 80, 0.1);
+}
+
+.service-card .btn-mas-info i {
+    transition: transform 0.3s ease;
+}
+
+.service-card .btn-mas-info:hover {
+    background: linear-gradient(90deg, #1a252f 0%, #2c3e50 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(44, 62, 80, 0.15);
+    color: #fff;
+    /* Ensure text stays white */
+}
+
+.service-card .btn-mas-info:hover i {
+    transform: translateX(3px);
+}
+
+/* Video Divider Section */
+.video-divider-section {
+    position: relative;
+    width: 100%;
+    height: 950px;
+    overflow: hidden;
+    margin-top: 80px;
+    margin-bottom: 0;
+    /* Remove bottom margin for seamless connection */
+}
+
+/* Gradient Fade to Dark Section */
+.video-divider-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    /* Much taller for gradual blend */
+    background: linear-gradient(to bottom,
+            rgba(15, 23, 42, 0) 0%,
+            rgba(15, 23, 42, 0.1) 20%,
+            rgba(15, 23, 42, 0.4) 50%,
+            rgba(15, 23, 42, 0.8) 80%,
+            #0f172a 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.video-divider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.divider-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.1);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.video-divider-section.is-visible .divider-video {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(15, 23, 42, 0.25) 0%, rgba(15, 23, 42, 0.65) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+}
+
+.video-content h2 {
+    display: table;
+    margin: 0 auto 20px auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.8em;
+    font-weight: 950;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    line-height: 1;
+    position: relative;
+    text-align: left;
+}
+
+.video-content h2::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 8px;
+    background: #ffffff;
+    /* White for dark video overlay */
+    margin: 20px 0 0 0;
+    border-radius: 10px;
+}
+
+.video-content p {
+    font-size: 1.4em;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 400;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .video-divider-section {
+        height: 350px;
+    }
+
+    .video-content h2 {
+        font-size: 2em;
+    }
+
+    .video-content p {
+        font-size: 1.1em;
+        padding: 0 20px;
+    }
+}
+
+/* 4.4 Sección Nuestras Fortalezas (index.html) */
+.strengths-section {
+    padding: 16px 0;
+    background-color: #fafbfc;
+}
+
+.strengths-section .section-title {
+    padding-top: 20px;
+}
+
+.strengths-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.strength-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.strength-item .icon-container {
+    margin-bottom: 15px;
+}
+
+.strength-item .icon-container svg {
+    width: 45px;
+    height: 45px;
+    fill: var(--primary-blue);
+    /* The icons should be in corporate blue */
+    transition: transform 0.3s ease;
+}
+
+.strength-item:hover .icon-container svg {
+    transform: scale(1.1);
+}
+
+.strength-item h3 {
+    font-size: 1.25em;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+    min-height: 3.2em;
+    /* Increased to accommodate longer titles like Responsibility... */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    line-height: 1.3;
+}
+
+.strength-item h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+}
+
+.strength-item p {
+    font-size: 0.95em;
+    color: var(--slate-600);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 4.5 Sección Testimonios (index.html, dentro de Nuestras Fortalezas) */
+.testimonials-slider-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 50px;
+    overflow: hidden;
+}
+
+.testimonials-slider {
+    max-width: 600px;
+    min-height: 220px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial-slide {
+    padding: 32px 28px 24px 28px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.testimonial-slide.active-testimonial {
+    opacity: 1;
+    position: relative;
+    display: block;
+}
+
+.testimonial-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    gap: 12px;
+}
+
+.testimonial-name,
+.testimonial-date,
+.testimonial-stars {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    color: #232a34;
+    font-size: 1.08em;
+}
+
+.testimonial-date {
+    font-size: 0.95em;
+    color: #888;
+}
+
+.testimonial-stars {
+    margin: 2px 0 6px 0;
+}
+
+.testimonial-text {
+    color: #232a34;
+    font-size: 1.13em;
+    margin: 0 0 10px 0;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.testimonial-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 40px;
+    text-align: center;
+    transition: background-color 0.3s;
+    z-index: 10;
+}
+
+.testimonial-nav:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-nav.prev {
+    left: 0px;
+}
+
+.testimonial-nav.next {
+    right: 0px;
+}
+
+.testimonial-dots-container {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.testimonial-dots-container .dot {
+    background-color: #ccc;
+}
+
+.testimonial-dots-container .dot.active-dot {
+    background-color: #555;
+}
+
+/* 4.6 Sección Carrusel de Clientes (index.html) */
+.client-carousel-section {
+    padding: 80px 0 100px;
+    /* Reduced top padding as fade handles transition */
+    background-color: #0f172a;
+    /* Dark Palette Color */
+    position: relative;
+    z-index: 2;
+    margin-top: -2px;
+    /* Fix for potential sub-pixel rendering gaps */
+}
+
+.client-carousel-section .section-title {
+    margin-bottom: 40px;
+    padding-top: 30px;
+    /* Reducido padding-top */
+    display: none;
+    /* Ocultamos el título general ya que ahora hay dos subtítulos */
+}
+
+.clients-partners-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically as requested */
+    gap: 80px;
+    /* More space between the two carousels */
+    align-items: center;
+    position: relative;
+}
+
+.clients-partners-wrapper::after {
+    display: none;
+    /* Remove the vertical divisor line */
+}
+
+.cp-column {
+    width: 100%;
+    overflow: hidden;
+}
+
+.cp-header {
+    display: table;
+    margin: 0 auto 30px auto;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4em;
+    color: #ffffff;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+/* White base line for dark background */
+.cp-header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 6px;
+    background: #ffffff;
+    /* White for dark background */
+    margin: 12px 0 0 0;
+    border-radius: 10px;
+}
+
+/* Red Accent Bar */
+
+.logo-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+    /* Increased height for larger logos */
+    /* Mask adjusted for dark background fading */
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.logo-carousel-track {
+    display: flex;
+    /* Adjusted width for larger items: 150px (logo) + 100px (total gap) = 250px */
+    width: calc(250px * 14);
+    animation: scrollLogos 30s linear infinite;
+    /* Slightly slower for readability at larger size */
+    height: 100%;
+    align-items: center;
+}
+
+/* Animación inversa para Aliados */
+.logo-carousel-track.track-reverse {
+    animation: scrollLogosReverse 30s linear infinite;
+}
+
+.client-logo {
+    flex-shrink: 0;
+    width: 150px;
+    /* Wider container for larger logos */
+    margin: 0 50px;
+    /* Increased gap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.client-logo img {
+    max-height: 80px;
+    max-width: 100%;
+    object-fit: contain;
+    opacity: 0.9;
+    /* Removed filter to show original colors */
+    /* Add slight brightness to ensure visibility on dark bg */
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.4s ease;
+}
+
+.client-logo img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: brightness(1.2) contrast(1.2);
+}
+
+/* Pause animation on hover for both directions */
+.logo-carousel-container:hover .logo-carousel-track {
+    animation-play-state: paused;
+}
+
+@keyframes scrollLogos {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollLogosReverse {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .clients-partners-wrapper {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .clients-partners-wrapper::after {
+        display: none;
+        /* Ocultar divisor en móviles */
+    }
+
+    .cp-column {
+        width: 100%;
+    }
+}
+
+/* 4.7 Sección Contáctanos (en index.html) */
+.contact-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.contact-section .section-title {
+    /* Título "Contáctanos" */
+    padding-top: 70px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.contact-content-wrapper {
+    display: flex;
+    gap: 50px;
+}
+
+.contact-info-text {
+    flex: 1;
+    max-width: 40%;
+    padding-top: 0px;
+}
+
+.contact-info-text h2.section-title {
+    padding-top: 0;
+}
+
+.contact-info-text h3.contact-details-title {
+    font-size: 1.4em;
+    color: #34495e;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.contact-info-text p.contact-detail-item {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.contact-info-text p.contact-detail-item strong {
+    color: #333;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.contact-info-text p.contact-detail-item span {
+    display: block;
+}
+
+.contact-logo {
+    display: block;
+    width: 175px;
+    height: auto;
+    margin: 0 0 -4px 0;
+    /* Pulled tighter */
+}
+
+.contact-rif {
+    font-size: 0.92em;
+    color: var(--slate-900);
+    margin: 0 0 -2px 0;
+    /* Minimal gap with the name below */
+    font-weight: 700;
+    line-height: 1;
+}
+
+.contact-info-text .contact-detail-item:first-of-type {
+    color: var(--slate-900);
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+.contact-form-container {
+    flex: 1.5;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+    font-size: 0.9em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+    color: #333;
+    font-family: inherit;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
+    border-color: #333;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.btn-submit {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #333;
+    padding: 12px 25px;
+    border: #333 1px solid;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: inherit;
+}
+
+.btn-submit:hover {
+    background: linear-gradient(90deg, #1a1f25 0%, #232a34 50%, #2c3e50 100%);
+    color: #fff;
+    border-color: #232a34;
+    box-shadow: 0 12px 32px rgba(30, 34, 44, 0.18), 0 2px 8px rgba(30, 34, 44, 0.10);
+    transform: scale(1.05) translateY(-6px);
+}
+
+.form-notice {
+    font-size: 0.8em;
+    color: #333;
+    margin-top: 15px;
+    text-align: right;
+}
+
+.form-notice a {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   5. Estilos ESPECÍFICOS para la Página de SERVICIOS.HTML
+   ========================================================================== */
+/* === Estilos ESPECÍFICOS para la Página de SERVICIOS.HTML === */
+
+.servicios-page-container .page-title-section {
+    padding: 180px 0 140px;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.servicios-page-container .page-title-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+.servicios-page-container .page-title {
+    font-size: 3.5em;
+    /* Unificado con el tamaño global de títulos */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    margin: 20px 0;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6), 0px 0px 3px rgba(255, 255, 255, 0.8);
+}
+
+/* ... (el resto de los estilos para servicios-page-container permanecen igual) ... */
+.servicios-page-container .page-content {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.servicios-page-container .services-intro {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #444;
+}
+
+.servicios-page-container .service-detail-section {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    padding: 40px 32px;
+    margin-bottom: 50px;
+    border-left: 5px solid var(--primary-blue);
+    /* Technical Accent Line */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicios-page-container .service-detail-section:hover {
+    transform: translateX(4px) translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.servicios-page-container .service-detail-section:nth-child(odd) .service-detail-image-container {
+    order: 1;
+}
+
+.servicios-page-container .service-detail-section:nth-child(odd) .service-detail-text {
+    order: 2;
+}
+
+.servicios-page-container .service-detail-section:nth-child(even) .service-detail-image-container {
+    order: 2;
+}
+
+.servicios-page-container .service-detail-section:nth-child(even) .service-detail-text {
+    order: 1;
+}
+
+.servicios-page-container .service-detail-image-container {
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+
+.servicios-page-container .service-detail-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+}
+
+.servicios-page-container .service-detail-text {
+    flex: 1;
+}
+
+.servicios-page-container .service-detail-text .section-title {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 2.8em;
+    padding-top: 0;
+    margin-bottom: 25px;
+}
+
+.servicios-page-container .service-detail-text h2 {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.servicios-page-container .service-detail-text p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--slate-600);
+}
+
+.servicios-page-container .service-detail-text h3 {
+    font-size: 1.4em;
+    color: var(--primary-light);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.servicios-page-container .service-detail-text ul {
+    list-style: none;
+    /* Custom markers */
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.servicios-page-container .service-detail-text ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: var(--slate-700);
+}
+
+.servicios-page-container .service-detail-text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 10px;
+    height: 10px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    /* Small squared dots */
+}
+
+.servicios-page-container .btn-cta {
+    display: inline-block;
+    background: linear-gradient(90deg, #232a34 0%, #2c3e50 50%, #34495e 100%);
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    border: none;
+}
+
+.servicios-page-container .btn-cta:hover {
+    background: linear-gradient(90deg, #1a1f25 0%, #232a34 50%, #2c3e50 100%);
+}
+
+.servicios-page-container hr.section-divider {
+    border: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 60px auto;
+    width: 80%;
+}
+
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS para la Página de CLIENTES & SOCIOS (clientes-socios.html)
+   ========================================================================== */
+.clientes-socios-page-container .page-title-section {
+    padding: 180px 0 140px;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.clientes-socios-page-container .page-title-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55);
+}
+
+/* Dentro de los estilos para clientes-socios.html en css/style.css */
+
+.clientes-socios-page-container .page-title {
+    font-size: 3.5em;
+    font-weight: 800;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    margin: 20px 0;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.6), 0px 0px 3px rgba(255, 255, 255, 0.8);
+}
+
+.clientes-socios-page-container .page-content {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.clientes-socios-page-container .services-intro {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #444;
+}
+
+.clientes-socios-page-container .clients-section,
+.clientes-socios-page-container .partners-section {
+    padding: 40px 0;
+}
+
+/* Usar .section-title general para los títulos dentro de clientes-socios,
+   pero con un padding-top específico si es necesario, o quitar el padding-top general
+   si el padding de la sección es suficiente.
+   La clase .section-title ya tiene padding-top: 70px. Si es demasiado para estos
+   títulos internos, podemos sobreescribirlo. */
+.clientes-socios-page-container .clients-section .section-title,
+.clientes-socios-page-container .partners-section .section-title {
+    padding-top: 20px;
+    /* Reducido padding para estos títulos específicos */
+    margin-bottom: 30px;
+}
+
+.clientes-socios-page-container .clients-grid,
+.clientes-socios-page-container .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.clientes-socios-page-container .client-item,
+.clientes-socios-page-container .partner-item {
+    background-color: #ffffff;
+    padding: 35px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.clientes-socios-page-container .client-item:hover,
+.clientes-socios-page-container .partner-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.clientes-socios-page-container .client-item img,
+.clientes-socios-page-container .partner-item img {
+    max-height: 80px;
+    max-width: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.clientes-socios-page-container .client-item h4,
+.clientes-socios-page-container .partner-item h4 {
+    font-size: 1.1em;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.clientes-socios-page-container .partner-item p {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   6. Clases de Utilidad y Animaciones
+   ========================================================================== */
+/* 6.1 Animaciones al Hacer Scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.fade-in-up {
+    transform: translateY(30px);
+}
+
+.fade-in-left {
+    transform: translateX(-30px);
+}
+
+.fade-in-right {
+    transform: translateX(30px);
+}
+
+.is-visible {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+}
+
+/* ==========================================================================
+   7. Media Queries (Estilos Responsivos)
+   ========================================================================== */
+/* Tablet Header Adjustments - Prevent wrap */
+@media (max-width: 1210px) and (min-width: 992px) {
+    .main-navigation li {
+        margin-left: 8px;
+    }
+
+    .main-navigation a {
+        padding: 8px 12px;
+        font-size: 0.82em;
+    }
+
+    .header-container {
+        padding: 0 15px;
+    }
+
+    .site-header.initial-state .logo img {
+        max-height: 60px;
+        /* Reduction for more space */
+    }
+}
+
+@media (max-width: 992px) {
+    .specialization-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .strengths-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clientes-socios-page-container .clients-grid,
+    .clientes-socios-page-container .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+    .site-header {
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        border-radius: 0 !important;
+    }
+
+    .site-header.initial-state,
+    .site-header.scrolled-state {
+        top: 0 !important;
+        padding: 10px 0 !important;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .main-navigation {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #f1f1ed;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .site-header.menu-open .main-navigation {
+        display: block;
+    }
+
+    .main-navigation ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-navigation li {
+        margin-left: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .main-navigation a {
+        display: block;
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-radius: 0;
+    }
+
+    .main-navigation li:last-child a {
+        border-bottom: none;
+    }
+
+    .site-header.initial-state .main-navigation a,
+    .site-header.scrolled-state .main-navigation a {
+        color: #000000;
+        border-color: #e0e0e0;
+        background-color: #f1f1ed;
+    }
+
+    .site-header.initial-state .main-navigation a:hover,
+    .site-header.scrolled-state .main-navigation a:hover,
+    .site-header.initial-state .main-navigation a.active,
+    .site-header.scrolled-state .main-navigation a.active {
+        background-color: #e0e0e0;
+    }
+
+    .hero-title {
+        font-size: 2.2em;
+        /* Reducido en móvil para que no se desborde */
+        white-space: normal;
+        /* En móviles permitimos el salto de línea por espacio */
+    }
+
+    .hero-tagline {
+        font-size: 1.2em;
+    }
+
+    .hero-section {
+        padding-top: calc(var(--initial-header-padding) * 2 + var(--initial-logo-height) + 0px);
+    }
+
+    .section-title {
+        font-size: 2em;
+        padding-top: 60px;
+    }
+
+    .about-subsection {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 0 !important;
+        /* Keep them joined as cards */
+        margin-bottom: 60px;
+    }
+
+    .about-subsection.vision-subsection {
+        flex-direction: column !important;
+    }
+
+    .about-image img,
+    .vision-subsection .about-image img {
+        border-radius: 12px 12px 0 0 !important;
+        /* Top rounded only */
+    }
+
+    .about-image {
+        margin-bottom: 0;
+    }
+
+    .about-subsection-text,
+    .vision-subsection .about-subsection-text {
+        padding: 32px 24px;
+        border-radius: 0 0 12px 12px !important;
+        /* Bottom rounded only */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .about-subsection-text h3 {
+        font-size: 1.8em;
+    }
+
+    .specialization-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strengths-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .logo-carousel-track {
+        animation-duration: 20s;
+        /* Más lento en móviles ya que hay menos espacio */
+        /* Si ajustaste el número de logos o su tamaño para móvil, ajusta el width aquí */
+        /* Ejemplo para 7 logos únicos (14 items) a 100px por item (img 80px + margen 20px) */
+        /* width: calc(100px * 14); */
+    }
+
+    .client-logo {
+        margin: 0 10px;
+        /* Menos margen en móviles */
+    }
+
+    .client-logo img {
+        max-height: 40px;
+        /* Logos más pequeños en móviles */
+        max-width: 80px;
+    }
+
+    .logo-carousel-container {
+        height: 70px;
+        /* Altura menor para el carrusel en móviles */
+        mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+
+    .testimonials-slider-wrapper {
+        padding: 0 15px;
+    }
+
+    .testimonial-nav {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    .testimonial-nav.prev {
+        left: -5px;
+    }
+
+    .testimonial-nav.next {
+        right: -5px;
+    }
+
+    .contact-content-wrapper {
+        flex-direction: column;
+    }
+
+    .contact-info-text {
+        max-width: 100%;
+        margin-bottom: 30px;
+        padding-top: 0;
+    }
+
+    .contact-info-text h2.section-title,
+    .contact-info-text h3.contact-details-title {
+        text-align: center;
+        padding-top: 0;
+    }
+
+    /* Ajustes responsivos para la página de servicios */
+    .servicios-page-container .page-title {
+        font-size: 2.5em;
+    }
+
+    .servicios-page-container .page-title-section {
+        padding: 100px 0 40px;
+    }
+
+    .servicios-page-container .service-detail-section {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .servicios-page-container .service-detail-section:nth-child(odd) .service-detail-image-container,
+    .servicios-page-container .service-detail-section:nth-child(even) .service-detail-image-container,
+    .servicios-page-container .service-detail-section:nth-child(odd) .service-detail-text,
+    .servicios-page-container .service-detail-section:nth-child(even) .service-detail-text {
+        order: 0;
+        max-width: 100%;
+    }
+
+    .servicios-page-container .service-detail-image-container {
+        margin-bottom: 20px;
+        flex-basis: auto;
+    }
+
+    .servicios-page-container .service-detail-text {
+        flex-basis: auto;
+    }
+
+    /* Ajustes responsivos para la página de clientes y socios */
+    .clientes-socios-page-container .page-title {
+        font-size: 2.2em;
+    }
+
+    .clientes-socios-page-container .clients-grid,
+    .clientes-socios-page-container .partners-grid {
+        grid-template-columns: 1fr;
+        /* 1 columna en móviles para clientes y socios */
+    }
+
+    .clientes-socios-page-container .client-item,
+    .clientes-socios-page-container .partner-item {
+        min-height: auto;
+        /* Altura automática en móviles */
+        padding: 20px;
+    }
+
+    .clientes-socios-page-container .client-item img,
+    .clientes-socios-page-container .partner-item img {
+        max-height: 60px;
+        /* Logos un poco más pequeños */
+    }
+}
+
+/* 4.3 Sección Equipo de Trabajo (en index.html) */
+.team-section {
+    padding: 60px 0 150px;
+    /* Aumenta el padding inferior para mayor separación */
+    background-color: #f9f9f9;
+    /* Color de fondo similar a la sección de especialidades */
+}
+
+.team-intro-text {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 columnas para los miembros del equipo */
+    gap: 30px;
+}
+
+.team-member {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease-out;
+}
+
+.team-member:hover .team-member-image img {
+    transform: scale(1.1);
+}
+
+.team-member h3 {
+    font-size: 1.3em;
+    color: var(--primary-light);
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.team-member-title {
+    font-style: italic;
+    color: var(--slate-500);
+    margin-bottom: 10px;
+}
+
+.team-member-bio {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Media Query para pantallas más pequeñas (ajusta según necesidad) */
+@media (max-width: 768px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Dos columnas en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+        /* Una columna en pantallas muy pequeñas */
+    }
+}
+
+/* Estilos para la sección de Equipo (con filas) */
+.team-grid {
+    display: flex;
+    flex-direction: column;
+    /* Apilar las filas verticalmente */
+    gap: 20px;
+    /* Espacio entre filas */
+}
+
+.team-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .team-row {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* HERO: Títulos y subtítulos en negro, fuente moderna, sin fondo adicional */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap');
+
+.hero-title,
+.hero-tagline {
+    color: var(--slate-900);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.hero-title {
+    font-size: 3.8em;
+    /* Un poco más grande para mayor jerarquía */
+    font-weight: 800;
+    /* Peso máximo para impacto visual */
+    margin: 0 0 0.2em 0;
+    letter-spacing: -1px;
+    white-space: nowrap;
+    /* Asegura que se vea en una sola línea */
+}
+
+.hero-tagline {
+    font-size: 1.6em;
+    /* Un poco más grande */
+    font-weight: 700;
+    /* Mucho más gruesa para que no se pierda */
+    margin: 0;
+    color: #1a1a1a;
+}
+
+/* Botón del hero (si se usa) */
+.hero-btn,
+.btn-mas-info {
+    display: inline-block;
+    background: linear-gradient(90deg, #232a34 0%, var(--primary-blue) 50%, var(--primary-light) 100%);
+    color: var(--white);
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 30px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(30, 34, 44, 0.08);
+    transition: var(--transition-base);
+    letter-spacing: 0.5px;
+    margin-top: 18px;
+}
+
+.hero-btn:hover,
+.btn-mas-info:hover {
+    background: linear-gradient(90deg, #1a1f25 0%, #232a34 50%, #2c3e50 100%);
+    color: #fff;
+    border-color: #232a34;
+    box-shadow: 0 12px 32px rgba(30, 34, 44, 0.18), 0 2px 8px rgba(30, 34, 44, 0.10);
+    transform: scale(1.05) translateY(-6px);
+}
+
+/* Ajuste para que el contenido del hero esté sobre la imagen pero sin fondo */
+.hero-content-static {
+    background: transparent;
+    /* Eliminamos la caja de fondo */
+    backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    text-align: center;
+    width: auto;
+    /* Ancho automático basado en el contenido */
+    max-width: 95vw;
+    position: absolute;
+    top: 55%;
+    /* Ajustado un poco para equilibrio visual */
+    left: 50%;
+    transform: translate(-50%, -55%);
+    z-index: 3;
+}
+
+@media (max-width: 700px) {
+    .hero-content-static {
+        padding: 18px 6vw 16px 6vw;
+        min-width: unset;
+    }
+}
+
+/* === Sección de Valores Destacados === */
+.valores-section {
+    background: var(--slate-100);
+    padding: 48px 0 32px 0;
+}
+
+.valores-grid {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.valor-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(30, 34, 44, 0.08);
+    padding: 36px 28px 28px 28px;
+    flex: 1 1 260px;
+    min-width: 260px;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.valor-card:hover {
+    box-shadow: 0 8px 32px rgba(30, 34, 44, 0.13);
+    transform: translateY(-4px) scale(1.03);
+}
+
+.valor-icon {
+    margin-bottom: 18px;
+}
+
+.valor-card h3 {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--slate-800);
+    margin: 0 0 10px 0;
+}
+
+.valor-card p {
+    color: #444b5a;
+    font-size: 1em;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .valores-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .valor-card {
+        max-width: 95vw;
+    }
+}
+
+/* === Testimonios tipo Google === */
+.testimonios-google-section {
+    background: #fafbfc;
+    padding: 16px 0 32px 0;
+}
+
+.testimonials-slider {
+    max-width: 600px;
+    min-height: 220px;
+}
+
+.testimonial-slide {
+    padding: 32px 28px 24px 28px;
+    min-height: 180px;
+}
+
+.testimonial-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5em;
+}
+
+.testimonial-name {
+    font-size: 1.08em;
+}
+
+.testimonial-date {
+    font-size: 0.95em;
+}
+
+.testimonial-text {
+    font-size: 1.13em;
+}
+
+@keyframes slideInRightBounce {
+    0% {
+        opacity: 0;
+        transform: translateX(60px) scale(0.99);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateX(-6px) scale(1.02);
+    }
+
+    80% {
+        transform: translateX(2px) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideInLeftBounce {
+    0% {
+        opacity: 0;
+        transform: translateX(-60px) scale(0.99);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateX(6px) scale(1.02);
+    }
+
+    80% {
+        transform: translateX(-2px) scale(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.testimonial-slide {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: none;
+}
+
+.testimonial-slide.active-testimonial {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    animation: slideInRightBounce 0.7s cubic-bezier(.68, -0.55, .27, 1.55);
+    z-index: 2;
+}
+
+.testimonial-slide.slide-in-left {
+    animation: slideInLeftBounce 0.7s cubic-bezier(.68, -0.55, .27, 1.55);
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonials-slider {
+    position: relative;
+    min-height: 220px;
+}
+
+.testimonial-stars svg {
+    width: 18px;
+    height: 18px;
+    fill: #fbbc04;
+    stroke: #fbbc04;
+    margin-right: 2px;
+    vertical-align: middle;
+}
+
+/* ==========================================================================
+   8. Botón Back to Top con Progreso (Progress Wrap)
+   ========================================================================== */
+.progress-wrap {
+    position: fixed;
+    right: 35px;
+    bottom: 35px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px rgba(44, 62, 80, 0.1);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 400ms linear;
+    background: #fff;
+}
+
+.progress-wrap.active-progress {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.progress-wrap svg path {
+    fill: none;
+}
+
+.progress-wrap svg.progress-circle path {
+    stroke: var(--primary-blue);
+    stroke-width: 6;
+    /* Thicker for better visibility */
+    box-sizing: border-box;
+    transition: all 400ms linear;
+}
+
+.progress-wrap .arrow-up {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-blue);
+    z-index: 1;
+    transition: all 400ms linear;
+}
+
+.progress-wrap:hover {
+    transform: scale(1.1);
+}
+
+.progress-wrap:hover .arrow-up {
+    transform: translate(-50%, -70%);
+}
+
+@media (max-width: 768px) {
+    .progress-wrap {
+        right: 20px;
+        bottom: 20px;
+    }
+}
