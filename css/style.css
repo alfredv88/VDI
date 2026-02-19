@@ -1377,6 +1377,19 @@ h6 {
     padding-top: 70px;
     text-align: left;
     margin-bottom: 20px;
+    color: #000000 !important;
+}
+
+.contact-section .section-overline {
+    color: #000000 !important;
+}
+
+.contact-section .text-accent {
+    color: #000000 !important;
+}
+
+.contact-section .section-title::after {
+    background: #000000 !important;
 }
 
 .contact-content-wrapper {
