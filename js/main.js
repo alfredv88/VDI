@@ -26,25 +26,17 @@ function throttle(callback, limit) {
 }
 
 function handleHeaderScroll() {
-    const scrollY = Math.min(window.pageYOffset, scrollMax);
-    // Interpolación lineal
-    const padding = maxHeaderPadding - ((maxHeaderPadding - minHeaderPadding) * (scrollY / scrollMax));
-    const logoHeight = maxLogoHeight - ((maxLogoHeight - minLogoHeight) * (scrollY / scrollMax));
+    const scrollY = window.pageYOffset;
+    const threshold = 60; // --header-scroll-threshold
 
     if (header) {
-        header.style.padding = padding + 'px 0';
-    }
-    if (logoImg) {
-        logoImg.style.maxHeight = logoHeight + 'px';
-        logoImg.style.transition = 'max-height 0.4s cubic-bezier(0.4,0,0.2,1)';
-    }
-    // Cambia la clase para colores de fondo, etc.
-    if (window.pageYOffset > 1) {
-        header.classList.remove('initial-state');
-        header.classList.add('scrolled-state');
-    } else {
-        header.classList.remove('scrolled-state');
-        header.classList.add('initial-state');
+        if (scrollY > threshold) {
+            header.classList.remove('initial-state');
+            header.classList.add('scrolled-state');
+        } else {
+            header.classList.remove('scrolled-state');
+            header.classList.add('initial-state');
+        }
     }
 }
 window.addEventListener('scroll', throttle(handleHeaderScroll, 10), { passive: true });
